@@ -5,6 +5,13 @@ const waffeOutput = document.getElementById('waffe');
 const raumOutput = document.getElementById('raum');
 const bildOutput = document.getElementById('bild');
 
+const button = document.querySelector('button');
+console.log(button);
+
+function init() {
+  console.log('Document loaded');
+}
+
 // Verdächtige
 const mrGreen = {
   verdaechtiger: 'mrGreen',
@@ -71,15 +78,15 @@ const suspectsArray = [mrGreen, drOrchid, profPlum, missScarlet, mrsPeacock, mrM
 
 // Waffen
 const weaponsArray = [
-  { name: 'rope', weight: 10 },
-  { name: 'knife', weight: 8 },
-  { name: 'candlestick', weight: 2 },
-  { name: 'dumbbell', weight: 30 },
-  { name: 'poison', weight: 2 },
-  { name: 'axe', weight: 15 },
-  { name: 'bat', weight: 13 },
-  { name: 'trophy', weight: 25 },
-  { name: 'pistol', weight: 20 },
+  { name: 'Seil', weight: 10 },
+  { name: 'Messer', weight: 8 },
+  { name: 'Kerzenständer', weight: 2 },
+  { name: 'Hantel', weight: 30 },
+  { name: 'Gift', weight: 2 },
+  { name: 'Axt', weight: 15 },
+  { name: 'Golfschläger', weight: 13 },
+  { name: 'Pokal', weight: 25 },
+  { name: 'Pistole', weight: 20 },
 ];
 
 // Räume
@@ -113,11 +120,12 @@ const zufallsVerdaechtiger = `${suspectsArray[randomNum(suspectsArray)].firstNam
 
 const verdaechtigerBild = suspectsArray[randomNum(suspectsArray)].image;
 
-raumOutput.innerHTML = zufallsRaum;
-waffeOutput.innerHTML = zufallsWaffe;
-suspectOutput.innerHTML = zufallsVerdaechtiger;
+raumOutput.innerHTML = `Tatort: ${zufallsRaum}`;
+waffeOutput.innerHTML = `Tatwaffe: ${zufallsWaffe}`;
+suspectOutput.innerHTML = `Täter: ${zufallsVerdaechtiger}`;
 bildOutput.innerHTML = `<img src="${verdaechtigerBild}" class="bild" alt="der Mörder"></img>`;
 
+window.addEventListener('load', init, false);
 // console.log(suspectsArray);
 // console.log(weaponsArray);
 // console.log(roomsArray);
