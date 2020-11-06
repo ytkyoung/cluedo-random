@@ -1,0 +1,59 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --stufe1-color: #f4f4f2;
+  --stufe2-color: #e8e8e8;
+  --stufe3-color: #bbbfca;
+  --stufe4-color: #495464;
+  --white-color: #fff;
+  --dark-color: #3d3d3d;
+  --blue1-color: #51adcf;
+  --blue2-color: #0278ae;
+}
+
+html {
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+body {
+  margin: 0 auto;
+  font-family: "Roboto Mono", monospace;
+  background-color: var(--stufe1-color);
+  color: var(--dark-color);
+}
+
+.container {
+  background-color: var(--stufe1-color);
+  width: 70%;
+  margin: 0 auto;
+  margin-top: 5rem;
+}
+
+.card {
+  background-color: var(--white-color);
+  color: #333;
+  border-radius: 0px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  margin: 0 auto;
+  width: 50%;
+  animation: opening 1s ease-in;
+}
+
+.bild {
+  width: 200px;
+  object-fit: cover;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
