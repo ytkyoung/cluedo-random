@@ -101,7 +101,9 @@ button {
 button:hover {
   background-color: var(--blue2-color);
 }
-
+button:focus {
+  outline: 0;
+}
 @media screen and (max-width: 842px) {
   .container {
     width: 100%;
