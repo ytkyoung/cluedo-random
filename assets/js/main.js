@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-console.log('test');
+console.log('testest');
 
 const suspectOutput = document.getElementById('verdaechtiger');
 const waffeOutput = document.getElementById('waffe');
