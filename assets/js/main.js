@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 console.log('test');
 
 const suspectOutput = document.getElementById('verdaechtiger');
@@ -8,34 +9,7 @@ const bildOutput = document.getElementById('bild');
 const button = document.querySelector('button');
 console.log(button);
 
-const randomNum = (x) => Math.floor(Math.random() * x.length);
-const generateRandom = () => Math.floor(Math.random() * 255);
-const randomZahl = function () {
-  const containerRGB = [generateRandom(), generateRandom(), generateRandom()];
-  const testColor = containerRGB.join();
-  return testColor;
-};
-
-document.getElementById('test').style.backgroundColor = `rgb(${randomZahl()})`;
-const handleClick = function () {
-  const zufallsZahlVerdaechtiger = randomNum(suspectsArray);
-  const zufallsRaum = roomsArray[randomNum(roomsArray)].name;
-  const zufallsWaffe = weaponsArray[randomNum(weaponsArray)].name;
-  const zufallsVerdaechtiger = `${suspectsArray[zufallsZahlVerdaechtiger].firstName} ${suspectsArray[zufallsZahlVerdaechtiger].lastName}`;
-
-  const verdaechtigerBild = suspectsArray[zufallsZahlVerdaechtiger].image;
-
-  raumOutput.innerHTML = `Tatort: ${zufallsRaum}`;
-  waffeOutput.innerHTML = `Tatwaffe: ${zufallsWaffe}`;
-  suspectOutput.innerHTML = `Täter: ${zufallsVerdaechtiger}`;
-  bildOutput.innerHTML = `<img src="${verdaechtigerBild}" class="bild" alt="der Täter"></img>`;
-  document.getElementById('test').style.backgroundColor = `rgb(${randomZahl()})`;
-};
-
-function init() {
-  console.log('Document loaded');
-  button.addEventListener('click', handleClick);
-}
+const btn = document.getElementById('btn');
 
 // Verdächtige
 const mrGreen = {
@@ -132,6 +106,56 @@ const roomsArray = [
   { name: 'Gästehaus' },
   { name: 'Terrasse' },
 ];
+
+// ZufallsNummer von 0 bis array.length
+const randomNum = (x) => Math.floor(Math.random() * x.length);
+
+// Zufallszahl von 0 bis 255
+const generateRandom = () => Math.floor(Math.random() * 255);
+// drei zufallsZahlen von 255 in Array [R,G,B]
+const randomZahl = function () {
+  const containerRGB = [generateRandom(), generateRandom(), generateRandom()];
+  return containerRGB.join();
+};
+
+let aktuelleFarbe;
+document.getElementById('containerFarbe').style.backgroundColor = aktuelleFarbe;
+
+const handleClick = function () {
+  const randomZwischenSp = `rgb(${randomZahl()})`;
+  const zufallsZahlVerdaechtiger = randomNum(suspectsArray);
+  const zufallsRaum = roomsArray[randomNum(roomsArray)].name;
+  const zufallsWaffe = weaponsArray[randomNum(weaponsArray)].name;
+  const zufallsVerdaechtiger = `${suspectsArray[zufallsZahlVerdaechtiger].firstName} ${suspectsArray[zufallsZahlVerdaechtiger].lastName}`;
+
+  const verdaechtigerBild = suspectsArray[zufallsZahlVerdaechtiger].image;
+
+  raumOutput.innerHTML = `Tatort: ${zufallsRaum}`;
+  waffeOutput.innerHTML = `Tatwaffe: ${zufallsWaffe}`;
+  suspectOutput.innerHTML = `Täter: ${zufallsVerdaechtiger}`;
+  bildOutput.innerHTML = `<img src="${verdaechtigerBild}" class="bild" alt="der Täter"></img>`;
+  document.getElementById('containerFarbe').style.backgroundColor = randomZwischenSp;
+  btn.style.backgroundColor = randomZwischenSp;
+  aktuelleFarbe = randomZwischenSp;
+};
+
+const handleMouseOver = function () {
+  button.style.backgroundColor = aktuelleFarbe;
+  button.style.filter = 'brightness(150%)';
+};
+
+const handleMouseOut = function () {
+  button.style.backgroundColor = aktuelleFarbe;
+  console.log(window.getComputedStyle(btn).getPropertyValue('background-color'));
+  button.style.filter = 'brightness(100%)';
+};
+
+function init() {
+  console.log('Document loaded');
+  button.addEventListener('click', handleClick);
+  button.addEventListener('mouseover', handleMouseOver);
+  button.addEventListener('mouseout', handleMouseOut);
+}
 
 window.addEventListener('load', init, handleClick(), false);
 
