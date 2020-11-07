@@ -8,8 +8,33 @@ const bildOutput = document.getElementById('bild');
 const button = document.querySelector('button');
 console.log(button);
 
+const randomNum = (x) => Math.floor(Math.random() * x.length);
+const generateRandom = () => Math.floor(Math.random() * 255);
+const randomZahl = function () {
+  const containerRGB = [generateRandom(), generateRandom(), generateRandom()];
+  const testColor = containerRGB.join();
+  return testColor;
+};
+
+document.getElementById('test').style.backgroundColor = `rgb(${randomZahl()})`;
+const handleClick = function () {
+  const zufallsZahlVerdaechtiger = randomNum(suspectsArray);
+  const zufallsRaum = roomsArray[randomNum(roomsArray)].name;
+  const zufallsWaffe = weaponsArray[randomNum(weaponsArray)].name;
+  const zufallsVerdaechtiger = `${suspectsArray[zufallsZahlVerdaechtiger].firstName} ${suspectsArray[zufallsZahlVerdaechtiger].lastName}`;
+
+  const verdaechtigerBild = suspectsArray[zufallsZahlVerdaechtiger].image;
+
+  raumOutput.innerHTML = `Tatort: ${zufallsRaum}`;
+  waffeOutput.innerHTML = `Tatwaffe: ${zufallsWaffe}`;
+  suspectOutput.innerHTML = `Täter: ${zufallsVerdaechtiger}`;
+  bildOutput.innerHTML = `<img src="${verdaechtigerBild}" class="bild" alt="der Täter"></img>`;
+  document.getElementById('test').style.backgroundColor = `rgb(${randomZahl()})`;
+};
+
 function init() {
   console.log('Document loaded');
+  button.addEventListener('click', handleClick);
 }
 
 // Verdächtige
@@ -91,41 +116,25 @@ const weaponsArray = [
 
 // Räume
 const roomsArray = [
-  { name: 'Dinning Room' },
-  { name: 'Conservatory' },
-  { name: 'Kitchen' },
-  { name: 'Study' },
-  { name: 'Library' },
-  { name: 'Billiard Room' },
+  { name: 'Speisesaal' },
+  { name: 'Wintergarten' },
+  { name: 'Küche' },
+  { name: 'Studierzimmer' },
+  { name: 'Bibliothek' },
+  { name: 'Billardzimmer' },
   { name: 'Lounge' },
-  { name: 'Ballroom' },
-  { name: 'Hall' },
-  { name: 'spa' },
-  { name: 'Living Room' },
-  { name: 'Observatory' },
+  { name: 'Ballsaal' },
+  { name: 'Saal' },
+  { name: 'Spa' },
+  { name: 'Wohnzimmer' },
+  { name: 'Observatorium' },
   { name: 'Theater' },
-  { name: 'Guest House' },
-  { name: 'Patio' },
+  { name: 'Gästehaus' },
+  { name: 'Terrasse' },
 ];
 
-const randomNum = (x) => Math.floor(Math.random() * x.length);
+window.addEventListener('load', init, handleClick(), false);
 
-console.log(randomNum(roomsArray));
-
-const zufallsRaum = roomsArray[randomNum(roomsArray)].name;
-const zufallsWaffe = weaponsArray[randomNum(weaponsArray)].name;
-const zufallsVerdaechtiger = `${suspectsArray[randomNum(suspectsArray)].firstName} ${
-  suspectsArray[randomNum(suspectsArray)].lastName
-}`;
-
-const verdaechtigerBild = suspectsArray[randomNum(suspectsArray)].image;
-
-raumOutput.innerHTML = `Tatort: ${zufallsRaum}`;
-waffeOutput.innerHTML = `Tatwaffe: ${zufallsWaffe}`;
-suspectOutput.innerHTML = `Täter: ${zufallsVerdaechtiger}`;
-bildOutput.innerHTML = `<img src="${verdaechtigerBild}" class="bild" alt="der Mörder"></img>`;
-
-window.addEventListener('load', init, false);
 // console.log(suspectsArray);
 // console.log(weaponsArray);
 // console.log(roomsArray);
